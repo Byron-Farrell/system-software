@@ -10,6 +10,7 @@
 // ---------------------------------------------------------------------------
 // Function Prototypes
 // ---------------------------------------------------------------------------
+
 void display_commands(void);
 void send_message(char *message);
 int process_exist(void);
@@ -126,5 +127,4 @@ int process_exist(void)
     fclose(fp);
     return 1;
   }
-
 }
