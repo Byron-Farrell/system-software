@@ -7,7 +7,22 @@
 
 void transfer(char *local_site, char *live_site)
 {
-  if(execlp("cp", "cp", "-r", INTERNAL_SITE, LIVE_SITE, NULL) < 0)  {
+  size_t size = sizeof(*local_site) + sizeof(".");
+  char *source = malloc(size);
+
+  if (strcpy(source, local_site) < 0)
+  {
+    syslog(LOG_ERR, "Error: failed copy local_site to source in file transfer.c");
+    exit(EXIT_FAILURE);
+  }
+
+  if (strcat(source, ".\0") < 0)
+  {
+    syslog(LOG_ERR, "Error: failed copy . to source in file transfer.c");
+    exit(EXIT_FAILURE);
+  }
+
+  if(execlp("cp", "cp", "-r", source, live_site, NULL) < 0)  {
     syslog(LOG_ERR, "Failed to transfer");
-  };
+  }
 }

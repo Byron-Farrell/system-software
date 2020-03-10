@@ -18,7 +18,7 @@
 
 // Site paths
 #define LIVE_SITE "/var/www/html/live/"
-#define INTERNAL_SITE "/var/www/html/internal/."
+#define INTERNAL_SITE "/var/www/html/internal/"
 
 #define BACKUP_PATH "/var/lib/system-software/backups/"
 
