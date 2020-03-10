@@ -22,4 +22,5 @@
 
 #define BACKUP_PATH "/var/lib/system-software/backups/"
 
+#define PID_TEMP_FILE "/tmp/system-software-pid.txt"
 #endif

@@ -96,7 +96,7 @@ void handle_message(char *message, short int *terminate)
 	if (!strncmp(message, "stop", strlen("stop")))
 	{
 		*terminate = 1;
-		FILE *fp = fopen("/tmp/system-software-pid.txt", "w+");
+		FILE *fp = fopen(PID_TEMP_FILE, "w+");
 		fclose(fp);
 		syslog(LOG_INFO, "terminating process.");
 	}

@@ -89,7 +89,7 @@ void send_message(char *message)
 
 int process_exist(void)
 {
-  FILE *fp = fopen("/tmp/system-software-pid.txt", "r+");
+  FILE *fp = fopen(PID_TEMP_FILE, "r+");
 
   if (fp == NULL)
   {
