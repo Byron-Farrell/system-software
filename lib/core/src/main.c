@@ -5,7 +5,7 @@
 
 #include "../includes/service.h"
 #include "../includes/config.h"
-
+#include "../../processes/includes/show_logs.h"
 
 // ---------------------------------------------------------------------------
 // Function Prototypes
@@ -35,6 +35,19 @@ int main(int argc, char **argv)
           printf("process initiated.\n");
           start_service();
         }
+      }
+      else if (!strncmp(argv[1], "start-force", strlen("start-force")))
+      {
+        // forcing start by clearing PID file
+        FILE *fp = fopen(PID_TEMP_FILE, "w+");
+        fclose(fp);
+        printf("process initiated.\n");
+        start_service();
+      }
+      else if (!strncmp(argv[1], "logs", strlen("logs")))
+      {
+        printf("0");
+        show_logs();
       }
       else if (!strncmp(argv[1], "restart", strlen("restart")))
       {
@@ -69,12 +82,17 @@ int main(int argc, char **argv)
 void display_commands(void)
 {
   printf("Commands\n");
-  printf("------------------------------------------------------------\n");
+  printf("----------------------------------------------------------------------------------------\n");
   printf("start:\t\tStarts the service.\n");
+  printf("start-force:\tForce start the service (not recomended).\n");
   printf("stop:\t\tStops the service.\n");
   printf("restart:\tRestarts the service service.\n");
   printf("transfer:\tTransfer all files from interanet to live site.\n");
   printf("backup:\t\tBackup all files being watched by service.\n");
+  printf("logs:\t\tView all logs associated with this program.\n");
+  printf("help:\t\tShow this menu.\n");
+
+  printf("\n\nNote: All commands should be run with sudo to ensure the processes have root access.\n");
 
 }
 

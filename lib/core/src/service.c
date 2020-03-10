@@ -12,6 +12,7 @@
 #include "../../processes/includes/backup_and_transfer.h"
 #include "../../processes/includes/backup.h"
 #include "../../processes/includes/transfer.h"
+
 #include "../../utils/includes/create_queue.h"
 #include "../includes/config.h"
 
@@ -27,8 +28,8 @@ void handle_message(char *message, short int *terminate);
 // ---------------------------------------------------------------------------
 // Globals
 // ---------------------------------------------------------------------------
-mqd_t mq;
-pid_t backup_and_transfer_pid;
+mqd_t mq; // message queue
+pid_t backup_and_transfer_pid; // child process
 
 int start_service(void)
 {
@@ -147,7 +148,6 @@ void handle_message(char *message, short int *terminate)
 			waitpid(pid, &wstatus, 0);
 			syslog(LOG_DEBUG, "transfer process ended.");
 		}
-
 	}
 }
 
